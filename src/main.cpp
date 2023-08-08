@@ -2,6 +2,11 @@
 #include <GLFW/glfw3.h>
 
 #include <iostream>
+#include <assimp/Importer.hpp>
+
+#include <ft2build.h>
+#include FT_FREETYPE_H
+
 
 // Vertex shader source code
 const char* vertexShaderSource = R"(
@@ -10,7 +15,7 @@ const char* vertexShaderSource = R"(
 
     void main()
     {
-        gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);
+        gl_Position = vec4(aPos, 1.0);
     }
 )";
 
@@ -27,6 +32,16 @@ const char* fragmentShaderSource = R"(
 
 int main()
 {
+    // Initialize Assimp (model loader)
+    Assimp::Importer importer;
+
+    // Initialize Freetype (font loader)
+    FT_Library ft;
+    if (FT_Init_FreeType(&ft)) {
+        std::cerr << "Failed to initialize FreeType" << std::endl;
+        return -1;
+    }
+
     // Initialize GLFW
     if (!glfwInit())
     {
