@@ -22,3 +22,6 @@ Replacing them with alternatives shouldn't be too complicated, if you wish to go
 The GLAD library is typically generated using https://glad.dav1d.de.
 You may want to make changes to it and replace the version located in the *libs* directory.
 
+# LFS-readiness :floppy_disk:
+
+The ``.gitattributes`` file has some initial recommendations for what you can store in Git Large File Storage (LFS).
